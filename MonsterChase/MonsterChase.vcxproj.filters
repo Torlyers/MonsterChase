@@ -1,0 +1,118 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="Source Files">
+      <UniqueIdentifier>{4FC737F1-C7A5-4376-A066-2A32D752A2FF}</UniqueIdentifier>
+      <Extensions>cpp;c;cc;cxx;def;odl;idl;hpj;bat;asm;asmx</Extensions>
+    </Filter>
+    <Filter Include="Header Files">
+      <UniqueIdentifier>{93995380-89BD-4b04-88EB-625FBE52EBFB}</UniqueIdentifier>
+      <Extensions>h;hh;hpp;hxx;hm;inl;inc;xsd</Extensions>
+    </Filter>
+    <Filter Include="Resource Files">
+      <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
+      <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
+    </Filter>
+    <Filter Include="Data">
+      <UniqueIdentifier>{52aeed47-4688-4c42-9177-b7ca24595b2b}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="main.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Game.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="Header.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Game.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <Image Include="Data\BadGuy.dds">
+      <Filter>Data</Filter>
+    </Image>
+    <Image Include="Data\GoodGuy.dds">
+      <Filter>Data</Filter>
+    </Image>
+    <Image Include="Data\ball.dds">
+      <Filter>Data</Filter>
+    </Image>
+    <Image Include="Data\bg.dds">
+      <Filter>Data</Filter>
+    </Image>
+    <Image Include="Data\pat.dds">
+      <Filter>Data</Filter>
+    </Image>
+    <Image Include="Data\text.dds">
+      <Filter>Data</Filter>
+    </Image>
+    <Image Include="Data\0.dds">
+      <Filter>Data</Filter>
+    </Image>
+    <Image Include="Data\1.dds">
+      <Filter>Data</Filter>
+    </Image>
+    <Image Include="Data\2.dds">
+      <Filter>Data</Filter>
+    </Image>
+    <Image Include="Data\3.dds">
+      <Filter>Data</Filter>
+    </Image>
+    <Image Include="Data\4.dds">
+      <Filter>Data</Filter>
+    </Image>
+    <Image Include="Data\5.dds">
+      <Filter>Data</Filter>
+    </Image>
+    <Image Include="Data\gameover.dds">
+      <Filter>Data</Filter>
+    </Image>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Data\GoodGuy.lua">
+      <Filter>Data</Filter>
+    </None>
+    <None Include="Data\BadGuy.lua">
+      <Filter>Data</Filter>
+    </None>
+    <None Include="Data\GoodGuy1.lua">
+      <Filter>Data</Filter>
+    </None>
+    <None Include="Data\ball.lua">
+      <Filter>Data</Filter>
+    </None>
+    <None Include="Data\bg.lua">
+      <Filter>Data</Filter>
+    </None>
+    <None Include="Data\pat.lua">
+      <Filter>Data</Filter>
+    </None>
+    <None Include="Data\text.lua">
+      <Filter>Data</Filter>
+    </None>
+    <None Include="Data\pat1.lua">
+      <Filter>Data</Filter>
+    </None>
+    <None Include="Data\wallbottom.lua">
+      <Filter>Data</Filter>
+    </None>
+    <None Include="Data\wallup.lua">
+      <Filter>Data</Filter>
+    </None>
+    <None Include="Data\gameover.lua">
+      <Filter>Data</Filter>
+    </None>
+    <None Include="Data\score1.lua">
+      <Filter>Data</Filter>
+    </None>
+    <None Include="Data\score2.lua">
+      <Filter>Data</Filter>
+    </None>
+  </ItemGroup>
+</Project>
