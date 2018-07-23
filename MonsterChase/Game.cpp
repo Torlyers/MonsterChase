@@ -15,21 +15,20 @@ class SpacePressedReceiver
 public:
 	void OnSpacePressed()
 	{
-		auto map = Engine::GameObjectManager::Instance()->GameObjects;
 		if (Game::Instance()->state == GameState::Start)
 		{
-			map["text"]->SetPosition(0.0f, 1000.0f);
-			map["ball"]->GetRigidBody()->SetVelocity(Engine::Vector2(100.0f, 100.0f));
+			Game::Instance()->text->SetPosition(0.0f, 1000.0f);
+			Game::Instance()->ball->GetRigidBody()->SetVelocity(Vector2(100.0f, 100.0f));
 			Game::Instance()->state = GameState::Battle;
 		}
 		else if (Game::Instance()->state == GameState::ServeBall)
 		{
-			map["ball"]->GetRigidBody()->SetVelocity(Engine::Vector2(100.0f, 100.0f));
+			Game::Instance()->ball->GetRigidBody()->SetVelocity(Vector2(100.0f, 100.0f));
 			Game::Instance()->state = GameState::Battle;
 		}
 		else if (Game::Instance()->state == GameState::GameOver)
 		{
-			Engine::Engine::Instance()->bQuit = true;
+			ZEngine::Instance()->bQuit = true;
 		}
 	}
 };
@@ -56,6 +55,17 @@ Game::Game()
 	IndexPath[4] = "Data\\4.dds";
 	IndexPath[5] = "Data\\5.dds";
 
+	ball = GameObjectMgr->CreateGameObjectFromLua("Data\\ball.lua");
+	text = GameObjectMgr->CreateGameObjectFromLua("Data\\text.lua");
+	gameover = GameObjectMgr->CreateGameObjectFromLua("Data\\gameover.lua");
+	score1 = GameObjectMgr->CreateGameObjectFromLua("Data\\score1.lua");
+	score2 = GameObjectMgr->CreateGameObjectFromLua("Data\\score2.lua");
+	player1 = GameObjectMgr->CreateGameObjectFromLua("Data\\pat.lua");
+	player2 = GameObjectMgr->CreateGameObjectFromLua("Data\\pat1.lua");
+	bg = GameObjectMgr->CreateGameObjectFromLua("Data\\bg.lua");
+	wallup = GameObjectMgr->CreateGameObjectFromLua("Data\\wallup.lua");
+	wallbottom = GameObjectMgr->CreateGameObjectFromLua("Data\\wallbottom.lua");
+
 }
 
 Game::~Game()
@@ -68,11 +78,11 @@ SpacePressedReceiver* receiver;
 void Game::Init()
 {
 	receiver = new SpacePressedReceiver();
-	Engine::Delegate<> tempDelegate = Engine::Delegate<>::Create<SpacePressedReceiver, &SpacePressedReceiver::OnSpacePressed>(receiver);
-	Engine::MessageManager::Instance()->AddDelegate("PRESSED_32", tempDelegate);
+	Delegate<> tempDelegate = Delegate<>::Create<SpacePressedReceiver, &SpacePressedReceiver::OnSpacePressed>(receiver);
+	MessageManager::Instance()->AddDelegate("PRESSED_32", tempDelegate);
 	
-	Engine::JobSystem::CreateQueue("LoadFile", 1);
-	Engine::JobSystem::CreateQueue("CreateGameObject", 1);
+	JobSystem::CreateQueue("LoadFile", 1);
+	JobSystem::CreateQueue("CreateGameObject", 1);
 	
 	AddGameObjectFromLua("text", "Data\\text.lua");
 	AddGameObjectFromLua("gameover", "Data\\gameover.lua");
@@ -104,17 +114,16 @@ void Game::Shutdown()
 
 void Game::AddGameObjectFromLua(std::string i_Name, const char* i_FilePath)
 {
-	Engine::JobSystem::IJob* p_LoadGo = new Engine::JobSystem::IJobLoadGameObjectFile(i_Name, i_FilePath);
+	JobSystem::IJob* p_LoadGo = new JobSystem::IJobLoadGameObjectFile(i_Name, i_FilePath);
 	ASSERT(p_LoadGo);
-	Engine::JobSystem::RunJob(p_LoadGo, "LoadFile");
+	JobSystem::RunJob(p_LoadGo, "LoadFile");
 }
 
 void Game::CheckBallPosition()
 {
 	if (state == GameState::Battle)
 	{
-		auto map = Engine::GameObjectManager::Instance()->GameObjects;
-		float posx = map["ball"]->GetPosition().x();
+		float posx = ball->GetPosition().x();
 		if (posx < -500.0f)
 		{
 			UpdateScore2(++PlayerScore2);
@@ -132,24 +141,22 @@ void Game::CheckInput()
 {
 	if (state == GameState::Battle)
 	{
-		auto map = Engine::GameObjectManager::Instance()->GameObjects;
-
-		if (Engine::Input::Instance()->IsKeyDown(87))//p1 up
+		if (Input::Instance()->IsKeyDown(87))//p1 up
 		{
-			map["player1"]->GetRigidBody()->AddForce(Engine::Vector2(0.0f, 10000.0f));
+			player1->GetRigidBody()->AddForce(Vector2(0.0f, 10000.0f));
 		}
-		else if (Engine::Input::Instance()->IsKeyDown(83))//p1 down
+		else if (Input::Instance()->IsKeyDown(83))//p1 down
 		{
-			map["player1"]->GetRigidBody()->AddForce(Engine::Vector2(0.0f, -10000.0f));
+			player1->GetRigidBody()->AddForce(Vector2(0.0f, -10000.0f));
 		}
 
-		if (Engine::Input::Instance()->IsKeyDown(73))//p2 up
+		if (Input::Instance()->IsKeyDown(73))//p2 up
 		{
-			map["player2"]->GetRigidBody()->AddForce(Engine::Vector2(0.0f, 10000.0f));
+			player2->GetRigidBody()->AddForce(Vector2(0.0f, 10000.0f));
 		}
-		else if (Engine::Input::Instance()->IsKeyDown(75))//p2 down
+		else if (Input::Instance()->IsKeyDown(75))//p2 down
 		{
-			map["player2"]->GetRigidBody()->AddForce(Engine::Vector2(0.0f, -10000.0f));
+			player2->GetRigidBody()->AddForce(Vector2(0.0f, -10000.0f));
 		}
 	}
 }
@@ -158,32 +165,28 @@ void Game::CheckGameOver()
 {
 	if (PlayerScore1 >= 5 || PlayerScore2 >= 5)
 	{
-		auto map = Engine::GameObjectManager::Instance()->GameObjects;
 		state = GameState::GameOver;
-		map["gameover"]->SetPosition(Engine::Vector2(0.0f, 0.0f));
+		gameover->SetPosition(Vector2(0.0f, 0.0f));
 	}
 }
 
 void Game::UpdateScore1(int score)
 {
-	auto map = Engine::GameObjectManager::Instance()->GameObjects;
-	map["score1"]->GetRenderer()->ShutDown();
-	GLib::Sprites::Sprite* sprite = Engine::RenderManager::Instance()->CreateSprite(IndexPath[score]);
-	map["score1"]->GetRenderer()->SetSprite(sprite);	
+	score1->GetRenderer()->ShutDown();
+	GLib::Sprites::Sprite* sprite = RenderManager::Instance()->CreateSprite(IndexPath[score]);
+	score1->GetRenderer()->SetSprite(sprite);	
 }
 
 void Game::UpdateScore2(int score)
 {
-	auto map = Engine::GameObjectManager::Instance()->GameObjects;
-	map["score2"]->GetRenderer()->ShutDown();
-	GLib::Sprites::Sprite* sprite = Engine::RenderManager::Instance()->CreateSprite(IndexPath[score]);
-	map["score2"]->GetRenderer()->SetSprite(sprite);
+	score2->GetRenderer()->ShutDown();
+	GLib::Sprites::Sprite* sprite = RenderManager::Instance()->CreateSprite(IndexPath[score]);
+	score2->GetRenderer()->SetSprite(sprite);
 }
 
 void Game::ResetBall()
 {
 	state = GameState::ServeBall;
-	auto map = Engine::GameObjectManager::Instance()->GameObjects;
-	map["ball"]->GetRigidBody()->SetVelocity(Engine::Vector2(0.0f, 0.0f));
-	map["ball"]->SetPosition(Engine::Vector2(0.0f, 0.0f));
+	ball->GetRigidBody()->SetVelocity(Vector2(0.0f, 0.0f));
+	ball->SetPosition(Vector2(0.0f, 0.0f));
 }

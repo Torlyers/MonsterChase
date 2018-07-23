@@ -19,17 +19,12 @@ namespace Engine
 
 	void GameObjectManager::Init()
 	{
-<<<<<<< HEAD
 
-=======
-		//m_Mutex = new Mutex(false, "AddGameObject");
-		m_Mutex = new SingleWriterMutipleReader();
->>>>>>> parent of 56cd134... debug
 	}
 
 	void GameObjectManager::Run()
 	{
-		if (GameObjects.size() != 0)
+		if (m_GameObjects.size() != 0)
 		{
 			
 		}
@@ -37,21 +32,14 @@ namespace Engine
 
 	void GameObjectManager::ShutDown()
 	{
-		auto itor = GameObjects.begin();
-		while (itor != GameObjects.end())
+		for (int i = 0; i < m_GameObjects.size(); ++i)
 		{
-			itor->second->Shutdown();
-			GameObjects.erase(itor++);
+			m_GameObjects[i]->Shutdown();
 		}
-		GameObjects.clear();
-
-		if(m_Mutex)
-			delete m_Mutex;
 		
 		DeleteInstance();
 	}
 
-<<<<<<< HEAD
 	SharedPointer<GameObject>& GameObjectManager::CreateGameObjectFromLua(std::string i_FileName)
 	{
 		size_t fileSize = 0;
@@ -79,34 +67,6 @@ namespace Engine
 
 			int result = 0;
 			result = luaL_loadbuffer(p_lua_state, reinterpret_cast<char*>(pFileContents), fileSize, nullptr);
-=======
-	void GameObjectManager::CreateGameObject(std::string i_Name, uint8_t* i_pFileContents, size_t i_FileSize)
-	{
-		//temp varables
-		const char* pVersion;
-		const char* pName;
-		Vector2 initPosition;
-		float rotation;
-		Vector2 size;
-		float mass;
-		float drag;
-		Vector2 velocity;
-		const char* pSpritePath;
-
-
-		//create lua state
-		lua_State* p_lua_state = luaL_newstate();
-		ASSERT(p_lua_state);
-		luaL_openlibs(p_lua_state);
-
-		size_t sizeFile = i_FileSize;
-		uint8_t* pFileContents = i_pFileContents;
-
-		if (sizeFile && pFileContents)
-		{
-			int result = 0;
-			result = luaL_loadbuffer(p_lua_state, reinterpret_cast<char*>(pFileContents), sizeFile, nullptr);
->>>>>>> parent of 56cd134... debug
 			ASSERT(result == 0);
 			result = lua_pcall(p_lua_state, 0, 0, 0);//check error
 			ASSERT(result == 0);
@@ -176,21 +136,13 @@ namespace Engine
 
 			//use the data to init gameobject
 			SharedPointer<GameObject> gameobject = new GameObject(initPosition);
-<<<<<<< HEAD
 			m_GameObjects.push_back(gameobject);
-=======
-			AddGameObject(gameobject, i_Name);
->>>>>>> parent of 56cd134... debug
 			gameobject->SetName(pName);
 			gameobject->SetPosition(initPosition);
 			gameobject->SetRotation(rotation);
 
 
-<<<<<<< HEAD
 
-=======
-			
->>>>>>> parent of 56cd134... debug
 			//read collider information
 			lua_pushstring(p_lua_state, "Collider");
 			result = lua_gettable(p_lua_state, -2);
@@ -234,11 +186,7 @@ namespace Engine
 				{
 					DEBUG_LOG("GameObject has no collider");
 				}
-<<<<<<< HEAD
 
-=======
-				
->>>>>>> parent of 56cd134... debug
 			}
 			else
 			{
@@ -246,11 +194,7 @@ namespace Engine
 			}
 			lua_pop(p_lua_state, 1);
 
-<<<<<<< HEAD
 
-=======
-				
->>>>>>> parent of 56cd134... debug
 
 			//get rigidbody information
 			lua_pushstring(p_lua_state, "Rigidbody");
@@ -304,22 +248,14 @@ namespace Engine
 				{
 					DEBUG_LOG("GameObject has no rigidbody");
 				}
-<<<<<<< HEAD
 
-=======
-						
->>>>>>> parent of 56cd134... debug
 			}
 			else
 			{
 				DEBUG_LOG("No Rigidbody Information");
 			}
 			lua_pop(p_lua_state, 1);
-<<<<<<< HEAD
 
-=======
-			
->>>>>>> parent of 56cd134... debug
 
 
 			//get render information
@@ -356,11 +292,7 @@ namespace Engine
 					DEBUG_LOG("Gameobject has no renderer");
 					pSpritePath = _strdup("None");
 				}
-<<<<<<< HEAD
 
-=======
-						
->>>>>>> parent of 56cd134... debug
 			}
 			else
 			{
@@ -368,17 +300,11 @@ namespace Engine
 			}
 			lua_pop(p_lua_state, 1);
 
-<<<<<<< HEAD
-=======
-			
-
->>>>>>> parent of 56cd134... debug
 			lua_pop(p_lua_state, 1);
 
 			ASSERT(lua_gettop(p_lua_state) == 0);
 
 			lua_close(p_lua_state);
-<<<<<<< HEAD
 
 			delete[] pVersion;
 			delete[] pName;
@@ -388,16 +314,6 @@ namespace Engine
 			return gameobject;
 
 		}
-=======
-			
-		}		
-
-		delete[] pVersion;
-		delete[] pName;
-		delete[] pSpritePath;
-		delete[] pFileContents;
-
->>>>>>> parent of 56cd134... debug
 	}
 
 	void GameObjectManager::ReadFloatArray(lua_State* i_lua_state, int i_index, float* o_array, int num)
@@ -418,17 +334,5 @@ namespace Engine
 		lua_pop(i_lua_state, 1);
 
 	}
-<<<<<<< HEAD
-=======
-
-	void GameObjectManager::AddGameObject(SharedPointer<GameObject> go, std::string i_Name)
-	{
-		m_Mutex->WriteLock();
-		//MessageManager::Instance()->BroadCastMessage("CreateNewGameObject");
-		GameObjects[i_Name] = go;
-		m_Mutex->ReleaseWriteLock();
-	}
-
->>>>>>> parent of 56cd134... debug
 }
 

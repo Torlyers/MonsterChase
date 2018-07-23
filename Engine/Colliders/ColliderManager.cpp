@@ -32,7 +32,7 @@ namespace Engine
 
 	void ColliderManager::Init()
 	{
-		m_Mutex = new SingleWriterMutipleReader();
+		//m_Mutex = new SingleWriterMutipleReader();
 	}
 
 	void ColliderManager::Run()
@@ -47,9 +47,6 @@ namespace Engine
 
 	void ColliderManager::Shutdown()
 	{
-		if (m_Mutex)
-			delete m_Mutex;
-		
 		if(m_Instance)
 			delete m_Instance;
 	}
@@ -62,9 +59,9 @@ namespace Engine
 			go->SetCollider(collider);
 			//collider->ResetMatrix();
 
-			m_Mutex->WriteLock();
+			//m_Mutex->WriteLock();
 			Colliders.push_back(collider);
-			m_Mutex->ReleaseWriteLock();
+			//m_Mutex->ReleaseWriteLock();
 		}		
 	}
 
@@ -114,6 +111,8 @@ namespace Engine
 
 	bool ColliderManager::CheckCollision(BoxCollider2D* i_Col1, BoxCollider2D* i_Col2, float & o_Time, Vector3 & o_Axis)
 	{	
+		
+		
 		PROFILE_UNSCOPED("Test Profile");
 		//Calculate Relative position in the other coordinate
 		Matrix4 Coord1To2 = i_Col2->GetModelMatrix().Inversion() * i_Col1->GetModelMatrix();

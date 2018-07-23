@@ -10,13 +10,6 @@ namespace Engine
 	class PhysicsManager final: public Singleton<PhysicsManager> 
 	{
 	private:
-<<<<<<< HEAD
-=======
-		static PhysicsManager* m_Instance;
-		SingleWriterMutipleReader* m_Mutex;
-
-		Mutex mutex1;
->>>>>>> parent of 56cd134... debug
 	
 	public:
 		friend Singleton<PhysicsManager>;
