@@ -26,7 +26,7 @@ namespace Engine
 	{
 	private:
 		static ColliderManager* m_Instance;
-		SingleWriterMutipleReader* m_Mutex;
+		//SingleWriterMutipleReader* m_Mutex;
 
 	public:
 		ColliderManager();

@@ -19,7 +19,7 @@ namespace Engine
 
 		void IJobProcessGameObjectFile::Run()
 		{
-			GameObjectManager::Instance()->CreateGameObject(m_Name, m_pFileContents, m_fileSize);
+			//GameObjectManager::Instance()->CreateGameObject(m_Name, m_pFileContents, m_fileSize);
 		}
 	}
 }

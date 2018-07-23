@@ -1,14 +1,18 @@
 #pragma once
-#include<stdio.h>
-#include<string.h>
-#include<stdlib.h>
-#include<list>
-#include<unordered_map>
+#include <stdio.h>
+#include <string.h>
+#include <stdlib.h>
+#include <list>
+#include <unordered_map>
 
-#include"Header.h"
-#include"Engine\Engine.h"
+#include "Header.h"
+#include "Engine\Engine.h"
 #include "GameObject\GameObject.h"
 #include "SmartPointer\SharedPointer.h"
+#include "GameObject\GameObjectManager.h"
+#include "Helpers\Defines.h"
+
+using namespace Engine;
 
 enum GameState
 {
@@ -49,4 +53,17 @@ public:
 	void UpdateScore2(int score);
 
 	static Game* Instance();
+
+	//GameObjects
+	SharedPointer<GameObject> text;
+	SharedPointer<GameObject> gameover;
+	SharedPointer<GameObject> score1;
+	SharedPointer<GameObject> score2;
+	SharedPointer<GameObject> player1;
+	SharedPointer<GameObject> player2;
+	SharedPointer<GameObject> ball;
+	SharedPointer<GameObject> bg;
+	SharedPointer<GameObject> wallup;
+	SharedPointer<GameObject> wallbottom;
+
 };

@@ -15,7 +15,7 @@ namespace Engine
 	{
 	private: 
 		static RenderManager* m_Instance;
-		SingleWriterMutipleReader* m_Mutex;
+		//SingleWriterMutipleReader* m_Mutex;
 
 	public:
 		RenderManager();

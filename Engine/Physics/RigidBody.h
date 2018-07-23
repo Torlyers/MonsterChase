@@ -34,7 +34,7 @@ namespace Engine {
 		RigidBody(SharedPointer<GameObject> & go);
 		~RigidBody();
 
-		friend class RigidBody;
+		friend class BoxCollider2D;
 		
 		float GetMass();
 		void SetMass(float i_Mass);

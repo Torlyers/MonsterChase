@@ -14,9 +14,9 @@ namespace Engine
 	{
 	private:
 		static PhysicsManager* m_Instance;
-		SingleWriterMutipleReader* m_Mutex;
+		//SingleWriterMutipleReader* m_Mutex;
 
-		Mutex mutex1;
+		//Mutex mutex1;
 	
 	public:
 
