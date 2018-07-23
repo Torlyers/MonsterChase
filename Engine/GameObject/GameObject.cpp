@@ -88,6 +88,7 @@ namespace Engine {
 
 	void GameObject::Shutdown()
 	{
+
 		if (m_Renderer != nullptr)
 		{
 			m_Renderer->ShutDown();
@@ -97,11 +98,15 @@ namespace Engine {
 		if (m_RigidBody != nullptr)
 		{
 			delete m_RigidBody;
+
 		}
 
 		if (m_Collider != nullptr)
 		{
 			delete m_Collider;
 		}
+
+
 	}
+
 }

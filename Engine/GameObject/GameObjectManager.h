@@ -7,32 +7,42 @@
 #include "Input/Input.h"
 #include "SmartPointer/SharedPointer.h"
 #include "Render/RenderManager.h"
-#include "Base/Singleton.h"
+#include "JobSystem/Thread/Mutex.h"
+#include "JobSystem/Thread/SingleWriterMultipleReader.h"
+
 
 using namespace std;
 
 namespace Engine
 {
-	class GameObjectManager final : public Singleton<GameObjectManager>
-	{	
-	public:
-		friend Singleton<GameObjectManager>;
 
+	class GameObjectManager
+	{
+	private:
+
+		static GameObjectManager* m_Instance;
+		vector<SharedPointer<GameObject>> m_GameObjects;
+
+
+	public:
 		GameObjectManager();
 		~GameObjectManager();
 
 		void Init();
 		void Run();
 		void ShutDown();
+
+		static GameObjectManager* Instance();
 			
 		SharedPointer<GameObject>& CreateGameObjectFromLua(std::string i_FileName);
+		void CreateGameObject(std::string i_Name, uint8_t* i_pFileContents, size_t i_FileSize);
 		void ReadFloatArray(lua_State* i_lua_state, int i_index, float* o_array, int num);
 
-		inline vector<SharedPointer<GameObject>>& GetObjects();
+		void AddGameObject(SharedPointer<GameObject> go, std::string i_Name);
 
-	private:
-		vector<SharedPointer<GameObject>> m_GameObjects;
+		inline vector<SharedPointer<GameObject>>& GetObjects();
 	};
+
 }
 
 #include "GameObject/GameObjectManager_inl.h"
