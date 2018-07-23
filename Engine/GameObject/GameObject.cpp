@@ -90,17 +90,55 @@ namespace Engine {
 	{
 		if (m_Renderer != nullptr)
 		{
+
+			/*auto list = RenderManager::Instance()->Renderers;
+			auto itor = list.begin();
+			while (itor != list.end())
+			{
+				if (*itor == m_Renderer)
+				{
+					(*itor) = nullptr;
+					list.erase(itor);
+					break;
+				}
+				else
+					itor++;
+			}*/
 			m_Renderer->ShutDown();
 			delete m_Renderer;
 		}
 
 		if (m_RigidBody != nullptr)
 		{
+			/*auto list = PhysicsManager::Instance()->RigidBodies;
+			auto itor = list.begin();
+			while (itor != list.end())
+			{
+				if (*itor == m_RigidBody)
+				{
+					(*itor) = nullptr;
+					list.erase(itor);
+				}
+				else
+					itor++;
+			}*/
 			delete m_RigidBody;
 		}
 
 		if (m_Collider != nullptr)
 		{
+			/*auto list = ColliderManager::Instance()->Colliders;
+			auto itor = list.begin();
+			while (itor != list.end())
+			{
+				if (*itor == m_Collider)
+				{
+					(*itor) = nullptr;
+					list.erase(itor);					
+				}
+				else
+					itor++;
+			}*/
 			delete m_Collider;
 		}
 	}

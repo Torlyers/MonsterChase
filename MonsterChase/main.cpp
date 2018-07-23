@@ -18,24 +18,21 @@
 
 int WINAPI wWinMain(HINSTANCE i_hInstance, HINSTANCE i_hPrevInstance, LPWSTR i_lpCmdLine, int i_nCmdShow)
 {
-	auto engine = ZEngine::Instance();
+	Engine::Engine* engine = Engine::Engine::Instance();
 	
-	
-	
-	engine->Init(i_hInstance, i_hPrevInstance, i_lpCmdLine, i_nCmdShow);
-
 	Game* game = Game::Instance();
-	game->Init();	
 
-	GLib::SetKeyStateChangeCallback(Input::Instance()->TestKeyCallback);
+	GLib::SetKeyStateChangeCallback(Engine::Input::Instance()->TestKeyCallback);
+
+	engine->Init(i_hInstance, i_hPrevInstance, i_lpCmdLine, i_nCmdShow);
+	game->Init();	
 	
 	bool bQuit = false;
 
 	do //every frame
 	{
-		game->Run();
 		engine->Run();
-		
+		game->Run();
 
 	} while (engine->bQuit == false);
 

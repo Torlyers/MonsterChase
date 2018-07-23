@@ -71,9 +71,6 @@
     <Filter Include="Source Files\Base">
       <UniqueIdentifier>{f0eb1d91-ff51-4e95-a79f-21a0a96dfa30}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Source Files\Helpers">
-      <UniqueIdentifier>{dba2e47a-99f6-484e-9e54-4d7fa04d013d}</UniqueIdentifier>
-    </Filter>
   </ItemGroup>
   <ItemGroup>
     <Text Include="ReadMe.txt" />
@@ -269,15 +266,6 @@
     <ClInclude Include="Memory\MemoryManager.h">
       <Filter>Source Files\Memory</Filter>
     </ClInclude>
-    <ClInclude Include="Base\BaseComponent.h">
-      <Filter>Source Files\Base</Filter>
-    </ClInclude>
-    <ClInclude Include="GameObject\GameObjectManager_inl.h">
-      <Filter>Source Files\GameObject</Filter>
-    </ClInclude>
-    <ClInclude Include="Defines.h">
-      <Filter>Source Files\Helpers</Filter>
-    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Memory\BitArray.cpp">
@@ -390,9 +378,6 @@
     </ClCompile>
     <ClCompile Include="Memory\MemoryManager.cpp">
       <Filter>Source Files\Memory</Filter>
-    </ClCompile>
-    <ClCompile Include="Base\BaseComponent.cpp">
-      <Filter>Source Files\Base</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

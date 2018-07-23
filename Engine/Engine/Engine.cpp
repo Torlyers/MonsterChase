@@ -6,26 +6,26 @@
 
 namespace Engine {
 
-	ZEngine* ZEngine::m_Instance = nullptr;
+	Engine* Engine::m_Instance = nullptr;
 
-	ZEngine* ZEngine::Instance()
+	Engine* Engine::Instance()
 	{
 		if (!m_Instance)
-			m_Instance = new ZEngine();
+			m_Instance = new Engine();
 		return m_Instance;
 	}
 
-	ZEngine::ZEngine()
+	Engine::Engine()
 	{
 		bQuit = false;
 	}
 
-	ZEngine::~ZEngine()
+	Engine::~Engine()
 	{
 
 	}
 
-	void ZEngine::Init(HINSTANCE i_hInstance, HINSTANCE i_hPrevInstance, LPWSTR i_lpCmdLine, int i_nCmdShow)
+	void Engine::Init(HINSTANCE i_hInstance, HINSTANCE i_hPrevInstance, LPWSTR i_lpCmdLine, int i_nCmdShow)
 	{
 		bool bSuccess = GLib::Initialize(i_hInstance, i_nCmdShow, "Pong", -1, 800, 450);
 		
@@ -45,7 +45,7 @@ namespace Engine {
 
 	}
 
-	void ZEngine::Run()
+	void Engine::Run()
 	{
 		
 		GLib::Service(bQuit);
@@ -53,12 +53,12 @@ namespace Engine {
 		GameObjectManager::Instance()->Run();
 		TimeManager::Instance()->Update();
 		ColliderManager::Instance()->Run();
-		PhysicsManager::Instance()->Run(TimeManager::Instance()->GetFrameDeltaTime());
+		//PhysicsManager::Instance()->Run(TimeManager::Instance()->GetFrameDeltaTime());
 		RenderManager::Instance()->Run();
 		
 	}
 
-	void ZEngine::Shutdown()
+	void Engine::Shutdown()
 	{
 		Profiler::Instance()->OutputProfile();
 		GameObjectManager::Instance()->ShutDown();		

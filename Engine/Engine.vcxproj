@@ -233,7 +233,6 @@
     <Text Include="ReadMe.txt" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="Base\BaseComponent.h" />
     <ClInclude Include="Base\Kernel.h" />
     <ClInclude Include="Base\Singleton.h" />
     <ClInclude Include="Colliders\BoxCollider2D.h" />
@@ -242,14 +241,12 @@
     <ClInclude Include="Colliders\ColliderManager_inl.h" />
     <ClInclude Include="DataStructure\List.h" />
     <ClInclude Include="DebugTool\Debug.h" />
-    <ClInclude Include="Defines.h" />
     <ClInclude Include="Engine\Engine.h" />
     <ClInclude Include="File\File.h" />
     <ClInclude Include="GameObject\Controller.h" />
     <ClInclude Include="GameObject\GameObject.h" />
     <ClInclude Include="GameObject\GameObjectController.h" />
     <ClInclude Include="GameObject\GameObjectManager.h" />
-    <ClInclude Include="GameObject\GameObjectManager_inl.h" />
     <ClInclude Include="GameObject\GameObject_inl.h" />
     <ClInclude Include="HashedString\HashedString.h" />
     <ClInclude Include="Input\Input.h" />
@@ -302,7 +299,6 @@
     <ClInclude Include="Time\TimeManager_inl.h" />
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="Base\BaseComponent.cpp" />
     <ClCompile Include="Colliders\BoxCollider2D.cpp" />
     <ClCompile Include="Colliders\ColliderManager.cpp" />
     <ClCompile Include="DebugTool\Debug.cpp" />

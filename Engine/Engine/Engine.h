@@ -18,24 +18,24 @@
 namespace Engine
 {
 
-	class ZEngine
+	class Engine
 	{
 
 	private:
-		static ZEngine* m_Instance;
+		static Engine* m_Instance;
 		
 
 	public:
 		bool bQuit;
 		
-		ZEngine();
-		~ZEngine();
+		Engine();
+		~Engine();		
 
 		void Init(HINSTANCE i_hInstance, HINSTANCE i_hPrevInstance, LPWSTR i_lpCmdLine, int i_nCmdShow);
 		void Run();
 		void Shutdown();
 
-		static ZEngine* Instance();
+		static Engine* Instance();
 		
 	};
 

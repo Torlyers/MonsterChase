@@ -20,7 +20,7 @@ namespace Engine
 
 	void RenderManager::Init()
 	{
-		//m_Mutex = new SingleWriterMutipleReader();
+		m_Mutex = new SingleWriterMutipleReader();
 	}
 
 	void RenderManager::Run()
@@ -47,8 +47,8 @@ namespace Engine
 
 	void RenderManager::ShutDown()
 	{
-		/*if (m_Mutex)
-			delete m_Mutex;*/
+		if (m_Mutex)
+			delete m_Mutex;
 		
 		GLib::Shutdown();
 		if (m_Instance != nullptr)
@@ -115,8 +115,8 @@ namespace Engine
 		renderer->SetSprite(sprite);		
 		go->SetRenderer(renderer);		
 
-		//m_Mutex->WriteLock();
+		m_Mutex->WriteLock();
 		Renderers.push_back(renderer);
-		//m_Mutex->ReleaseWriteLock();
+		m_Mutex->ReleaseWriteLock();
 	}
 }

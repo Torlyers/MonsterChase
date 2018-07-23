@@ -18,8 +18,6 @@ namespace Engine {
 	class BoxCollider2D;
 	class Renderer;
 
-	 
-
 	class GameObject
 	{
 	protected:

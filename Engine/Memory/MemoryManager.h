@@ -4,7 +4,7 @@
 namespace Engine
 {
 
-	class MemoryManager
+	class MemoryManager: public Singleton<MemoryManager>
 	{
 	public:
 		MemoryManager();
