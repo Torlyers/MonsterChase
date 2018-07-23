@@ -7,7 +7,7 @@ namespace Engine
 	{
 	}
 
-	Renderer::Renderer(SharedPointer<GameObject> i_GameObject)
+	Renderer::Renderer(shared_ptr<GameObject> i_GameObject)
 	{
 		m_GameObject = i_GameObject;
 	}
@@ -23,7 +23,7 @@ namespace Engine
 
 	void Renderer::Run()
 	{
-		GLib::Sprites::RenderSprite(*m_Sprite, GLib::Point2D{ m_GameObject->GetPosition().x(), m_GameObject->GetPosition().y() }, m_GameObject->GetRotation());
+		GLib::Sprites::RenderSprite(*m_Sprite, GLib::Point2D{ m_GameObject.lock()->GetPosition().x(), m_GameObject.lock()->GetPosition().y() }, m_GameObject.lock()->GetRotation());
 	}
 
 	void Renderer::ShutDown()

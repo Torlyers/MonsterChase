@@ -10,13 +10,13 @@ namespace Engine {
 
 	}
 
-	RigidBody::RigidBody(SharedPointer<GameObject> & go) :
+	RigidBody::RigidBody(shared_ptr<GameObject> & go) :
 		m_Mass(1.0f),
 		m_DragFactor(0.3f),
 		m_Collider(nullptr)
 	{
 		m_GameObject = go;
-		if (m_GameObject->GetCollider() == nullptr)
+		if (m_GameObject.lock()->GetCollider() == nullptr)
 		{
 			BoxCollider2D* collider = new BoxCollider2D(go);
 			m_Collider = collider;
@@ -42,7 +42,7 @@ namespace Engine {
 		m_Acceleration = m_TotalForce / m_Mass;
 		Vector2 VeloCity_new = m_Velocity + m_Acceleration * DeltaTime;
 		
-		m_GameObject->SetPosition(m_GameObject->GetPosition() + (m_Velocity + VeloCity_new) / 2.0f * DeltaTime);
+		m_GameObject.lock()->SetPosition(m_GameObject.lock()->GetPosition() + (m_Velocity + VeloCity_new) / 2.0f * DeltaTime);
 		m_Velocity = VeloCity_new;
 		m_Speed = m_Velocity.Magnitude();
 

@@ -1,4 +1,4 @@
 #pragma once
  
 #define GameObjectMgr GameObjectManager::Instance()
-#define GoOwner SharedPointer<GameObject> 
+#define GoOwner shared_ptr<GameObject> 

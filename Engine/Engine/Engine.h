@@ -8,12 +8,14 @@
 #include "Time\TimeManager.h"
 #include "Physics\PhysicsManager.h"
 #include "Input\Input.h"
-#include "SmartPointer\SharedPointer.h"
 #include "File\File.h"
 #include "JobSystem\JobSystem.h"
 #include "Colliders\ColliderManager.h"
 #include "GameObject\GameObjectManager.h"
 #include "Render\RenderManager.h"
+
+#include <memory>
+using namespace std;
 
 namespace Engine
 {

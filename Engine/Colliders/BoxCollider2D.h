@@ -3,7 +3,7 @@
 #include "Math/Vector3.h"
 #include "Math/Matrix4.h"
 #include "GameObject/gameobject.h"
-#include "SmartPointer/WeakPointer.h"
+#include <memory>
 
 namespace Engine
 {
@@ -27,11 +27,11 @@ namespace Engine
 		Matrix4 m_Model;
 		AABB m_AABB;		
 
-		WeakPointer<GameObject> m_GameObject;
+		weak_ptr<GameObject> m_GameObject;
 
 	public:
 		BoxCollider2D();
-		BoxCollider2D(SharedPointer<GameObject> go);
+		BoxCollider2D(shared_ptr<GameObject> go);
 		~BoxCollider2D();
 
 		Matrix4 GetModelMatrix();
@@ -43,7 +43,7 @@ namespace Engine
 
 		void ResetMatrix();
 
-		WeakPointer<GameObject> GetGameObject();	
+		weak_ptr<GameObject> GetGameObject();	
 
 		bool CheckCollision(const AABB & i_AABB, Vector2 i_Velocity, float & o_Time, Vector3 & o_Axis);
 		

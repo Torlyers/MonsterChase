@@ -2,11 +2,11 @@
 
 #include <vector>
 
-#include "SmartPointer/WeakPointer.h"
 #include "GameObject/GameObject.h"
 #include "Render/Renderer.h"
-#include "JobSystem/Thread/Mutex.h"
-#include "JobSystem/Thread/SingleWriterMultipleReader.h"
+#include <Memory>
+
+using namespace std;
 
 namespace Engine
 {
@@ -30,7 +30,7 @@ namespace Engine
 		std::vector<Renderer*> Renderers;
 
 		GLib::Sprites::Sprite* CreateSprite(const char* i_FileName);
-		void AddRenderer(SharedPointer<GameObject> go, const char* i_FileName);
+		void AddRenderer(shared_ptr<GameObject> go, const char* i_FileName);
 	};
 
 }

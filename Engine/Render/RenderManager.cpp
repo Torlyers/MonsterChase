@@ -106,7 +106,7 @@ namespace Engine
 		return sprite;
 	}
 
-	void RenderManager::AddRenderer(SharedPointer<GameObject> go, const char* i_FileName)
+	void RenderManager::AddRenderer(shared_ptr<GameObject> go, const char* i_FileName)
 	{
 		
 		Renderer* renderer = new Renderer(go);

@@ -51,7 +51,7 @@ namespace Engine
 			delete m_Instance;
 	}
 
-	void ColliderManager::AddCollider(SharedPointer<GameObject> go)
+	void ColliderManager::AddCollider(shared_ptr<GameObject> go)
 	{
 		if (go->GetCollider() == nullptr)
 		{			
@@ -127,8 +127,8 @@ namespace Engine
 		AABB2InCoord1.Extents = i_Col2->GetAABB().Extents;
 
 		//Calculate Relative Velocity in the other coordinate
-		Vector2 Velocity1 = i_Col1->GetGameObject()->GetRigidBody()->GetVelocity();
-		Vector2 Velocity2 = i_Col2->GetGameObject()->GetRigidBody()->GetVelocity();
+		Vector2 Velocity1 = i_Col1->GetGameObject().lock()->GetRigidBody()->GetVelocity();
+		Vector2 Velocity2 = i_Col2->GetGameObject().lock()->GetRigidBody()->GetVelocity();
 		Vector2 RelaVel1InCoord2 = Velocity1 - Velocity2;
 		Vector2 RelaVel2InCoord1 = Velocity2 - Velocity1;
 
@@ -144,8 +144,8 @@ namespace Engine
 	void ColliderManager::HandleCollision(const CollisionPair & i_Pair)
 	{
 
-		RigidBody* r1 = i_Pair.col1->GetGameObject()->GetRigidBody();
-		RigidBody* r2 = i_Pair.col2->GetGameObject()->GetRigidBody();
+		RigidBody* r1 = i_Pair.col1->GetGameObject().lock()->GetRigidBody();
+		RigidBody* r2 = i_Pair.col2->GetGameObject().lock()->GetRigidBody();
 
 		if (r1 != nullptr && r2 != nullptr)
 		{

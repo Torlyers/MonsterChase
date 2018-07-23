@@ -3,7 +3,7 @@
 
 namespace Engine
 {
-	vector<SharedPointer<GameObject>>& GameObjectManager::GetObjects()
+	vector<shared_ptr<GameObject>>& GameObjectManager::GetObjects()
 	{
 		return m_GameObjects;
 	}

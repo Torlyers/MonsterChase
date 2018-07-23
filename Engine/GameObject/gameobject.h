@@ -4,12 +4,12 @@
 #include <stdint.h>
 #include <stdlib.h>
 
+
 #include "File\File.h"
 #include "Math\Vector3.h"
-#include "GameObject\Controller.h"
-#include "SmartPointer\SharedPointer.h"
 
-
+#include <memory>
+using namespace std;
 
 namespace Engine {
 
@@ -34,8 +34,6 @@ namespace Engine {
 		Renderer* m_Renderer;
 
 	public:
-
-		friend class Controller;
 
 		GameObject();
 		GameObject(Vector2 i_Position);

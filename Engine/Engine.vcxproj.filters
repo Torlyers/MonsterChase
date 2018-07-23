@@ -112,12 +112,6 @@
     <ClInclude Include="Input\Input.h">
       <Filter>Source Files\Input</Filter>
     </ClInclude>
-    <ClInclude Include="SmartPointer\SharedPointer.h">
-      <Filter>Source Files\SmartPointer</Filter>
-    </ClInclude>
-    <ClInclude Include="SmartPointer\WeakPointer.h">
-      <Filter>Source Files\SmartPointer</Filter>
-    </ClInclude>
     <ClInclude Include="resource.h" />
     <ClInclude Include="HashedString\HashedString.h">
       <Filter>Source Files\HashedString</Filter>

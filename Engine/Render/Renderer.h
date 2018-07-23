@@ -1,8 +1,9 @@
 #pragma once
 
-#include "SmartPointer/WeakPointer.h"
 #include "GameObject/gameobject.h"
 #include "GLib.h"
+#include <memory>
+using namespace std;
 
 namespace Engine
 {
@@ -10,16 +11,16 @@ namespace Engine
 	{
 	private:
 
-		WeakPointer<GameObject> m_GameObject;
+		weak_ptr<GameObject> m_GameObject;
 		GLib::Sprites::Sprite* m_Sprite;
 
 	public:
 		Renderer();
-		Renderer(SharedPointer<GameObject> i_GameObject);
+		Renderer(shared_ptr<GameObject> i_GameObject);
 		~Renderer();
 
-		WeakPointer<GameObject> GetGameObject();
-		void SetGameObject(SharedPointer<GameObject> i_GameObject);
+		weak_ptr<GameObject> GetGameObject();
+		void SetGameObject(shared_ptr<GameObject> i_GameObject);
 
 		GLib::Sprites::Sprite* GetSprite();
 		void SetSprite(GLib::Sprites::Sprite* i_sprite);

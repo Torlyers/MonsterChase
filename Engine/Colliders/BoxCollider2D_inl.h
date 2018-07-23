@@ -26,7 +26,7 @@ namespace Engine
 		m_AABB = i_AABB;
 	}
 
-	inline WeakPointer<GameObject> BoxCollider2D::GetGameObject()
+	inline weak_ptr<GameObject> BoxCollider2D::GetGameObject()
 	{
 		return m_GameObject;
 	}

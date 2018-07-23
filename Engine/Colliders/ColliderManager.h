@@ -44,7 +44,7 @@ namespace Engine
 		static ColliderManager* Instance();
 
 		//For GameObjects to add rigidBody
-		void AddCollider(SharedPointer<GameObject> go);
+		void AddCollider(shared_ptr<GameObject> go);
 
 		void DetectCollision();
 		bool CheckCollision(BoxCollider2D* i_Col1, BoxCollider2D* i_Col2, float & o_Time, Vector3 & o_Axis);

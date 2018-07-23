@@ -1,7 +1,6 @@
 #pragma once
 #include "GameObject/gameobject.h"
-#include "SmartPointer/SharedPointer.h"
-#include "SmartPointer/WeakPointer.h"
+#include <memory>
 
 namespace Engine
 {
@@ -9,11 +8,11 @@ namespace Engine
 	class BaseComponent
 	{
 	public:
-		BaseComponent(SharedPointer<GameObject> i_GameObject);
+		BaseComponent(shared_ptr<GameObject> i_GameObject);
 		virtual ~BaseComponent() = 0;
 
 	private:
-		WeakPointer<GameObject> m_GameObject;
+		weak_ptr<GameObject> m_GameObject;
 	};
 
 }

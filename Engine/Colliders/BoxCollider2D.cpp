@@ -9,7 +9,7 @@ namespace Engine
 		ResetMatrix();
 	}
 
-	BoxCollider2D::BoxCollider2D(SharedPointer<GameObject> go)
+	BoxCollider2D::BoxCollider2D(shared_ptr<GameObject> go)
 	{
 		ResetMatrix();
 		m_GameObject = go;
@@ -23,13 +23,13 @@ namespace Engine
 
 	void BoxCollider2D::ResetMatrix()
 	{		
-		if (m_GameObject.IsValid())
+		if (m_GameObject.lock().get() != nullptr)
 		{
 			//Vector3 axis(0.0f, 0.0f, 1.0f);//z
 			//float angle = GetGameObject()->GetRotation();
 			//m_Model = m_Model.Rotate(axis, angle);
 			
-			Vector3 translation(GetGameObject()->GetPosition(), 0.0f);
+			Vector3 translation(GetGameObject().lock()->GetPosition(), 0.0f);
  			m_Model = m_Model.Translate(translation);			
 		}
 	}

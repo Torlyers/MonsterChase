@@ -1,8 +1,10 @@
 #pragma once
 
 #include "GameObject/GameObject.h"
-#include "SmartPointer/WeakPointer.h"
 #include "Colliders/BoxCollider2D.h"
+#include <memory>
+
+using namespace std;
 
 namespace Engine {
 
@@ -11,7 +13,7 @@ namespace Engine {
 	
 	private:
 
-		WeakPointer<GameObject> m_GameObject;
+		weak_ptr<GameObject> m_GameObject;
 		BoxCollider2D* m_Collider;
 
 		float m_Mass;
@@ -31,7 +33,7 @@ namespace Engine {
 	public:
 
 		RigidBody();
-		RigidBody(SharedPointer<GameObject> & go);
+		RigidBody(shared_ptr<GameObject> & go);
 		~RigidBody();
 
 		friend class BoxCollider2D;

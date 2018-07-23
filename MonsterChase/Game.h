@@ -8,10 +8,9 @@
 #include "Header.h"
 #include "Engine\Engine.h"
 #include "GameObject\GameObject.h"
-#include "SmartPointer\SharedPointer.h"
 #include "GameObject\GameObjectManager.h"
 #include "Helpers\Defines.h"
-
+#include <memory>
 using namespace Engine;
 
 enum GameState
@@ -55,15 +54,15 @@ public:
 	static Game* Instance();
 
 	//GameObjects
-	SharedPointer<GameObject> text;
-	SharedPointer<GameObject> gameover;
-	SharedPointer<GameObject> score1;
-	SharedPointer<GameObject> score2;
-	SharedPointer<GameObject> player1;
-	SharedPointer<GameObject> player2;
-	SharedPointer<GameObject> ball;
-	SharedPointer<GameObject> bg;
-	SharedPointer<GameObject> wallup;
-	SharedPointer<GameObject> wallbottom;
+	shared_ptr<GameObject> text;
+	shared_ptr<GameObject> gameover;
+	shared_ptr<GameObject> score1;
+	shared_ptr<GameObject> score2;
+	shared_ptr<GameObject> player1;
+	shared_ptr<GameObject> player2;
+	shared_ptr<GameObject> ball;
+	shared_ptr<GameObject> bg;
+	shared_ptr<GameObject> wallup;
+	shared_ptr<GameObject> wallbottom;
 
 };

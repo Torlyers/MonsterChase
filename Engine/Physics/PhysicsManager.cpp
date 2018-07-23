@@ -35,7 +35,7 @@ namespace Engine {
 		}
 	}
 
-	void PhysicsManager::AddRigidBody(SharedPointer<GameObject> go)
+	void PhysicsManager::AddRigidBody(shared_ptr<GameObject> go)
 	{
 		if (go->GetRigidBody() == nullptr) 
 		{			
