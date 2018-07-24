@@ -3,15 +3,6 @@
 
 namespace Engine {	
 
-	Input* Input::m_Instance = nullptr;
-
-	Input* Input::Instance()
-	{
-		if (!m_Instance)
-			m_Instance = new Input();
-		return m_Instance;
-	}
-
 	Input::Input()
 	{
 
@@ -33,8 +24,7 @@ namespace Engine {
 
 	void Input::Shutdown()
 	{
-		if(m_Instance != nullptr)
-			delete m_Instance;
+
 	}
 
 	void Input::TestKeyCallback(unsigned int i_VKeyID, bool bWentDown)

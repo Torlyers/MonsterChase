@@ -8,31 +8,20 @@
 
 namespace Engine
 {
-	ColliderManager* ColliderManager::m_Instance = nullptr;
-
-	ColliderManager* ColliderManager::Instance()
-	{
-		if (!m_Instance)
-		{
-			m_Instance = new ColliderManager();
-		}
-
-		return m_Instance;
-	}
-
+	
 	ColliderManager::ColliderManager()
 	{
 		
 	}
 
-
 	ColliderManager::~ColliderManager()
 	{
+
 	}
 
 	void ColliderManager::Init()
 	{
-		//m_Mutex = new SingleWriterMutipleReader();
+
 	}
 
 	void ColliderManager::Run()
@@ -47,8 +36,7 @@ namespace Engine
 
 	void ColliderManager::Shutdown()
 	{
-		if(m_Instance)
-			delete m_Instance;
+
 	}
 
 	void ColliderManager::AddCollider(shared_ptr<GameObject> go)
@@ -57,11 +45,8 @@ namespace Engine
 		{			
 			BoxCollider2D* collider = new BoxCollider2D(go);			
 			go->SetCollider(collider);
-			//collider->ResetMatrix();
 
-			//m_Mutex->WriteLock();
 			Colliders.push_back(collider);
-			//m_Mutex->ReleaseWriteLock();
 		}		
 	}
 
@@ -203,6 +188,5 @@ namespace Engine
 			//r2->SetVelocity(Vector2(Vel2.x(), Vel2.y()));
 
 		}
-
 	}
 }

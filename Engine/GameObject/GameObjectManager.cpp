@@ -7,16 +7,7 @@
 
 namespace Engine
 {
-
-	GameObjectManager* GameObjectManager::m_Instance = nullptr;
-
-	GameObjectManager* GameObjectManager::Instance()
-	{
-		if (!m_Instance)
-			m_Instance = new GameObjectManager();
-
-		return m_Instance;
-	}
+	
 
 	GameObjectManager::GameObjectManager()
 	{
@@ -29,24 +20,14 @@ namespace Engine
 
 	void GameObjectManager::Init()
 	{
-		//m_Mutex = new Mutex(false, "AddGameObject");
-		//m_Mutex = new SingleWriterMutipleReader();
+
 	}
 
 	void GameObjectManager::Run()
 	{
 		if (m_GameObjects.size() != 0)
 		{
-			/*if (Input::Instance()->isKeyDown)
-			{
-				Vector2 i_Force(100.0f, 0.0f);
-				GameObjects[0]->GetRigidBody()->AddForce(i_Force);
-			}
-			else
-			{
-				Vector2 i_Force(0.0f, 0.0f);
-				GameObjects[0]->GetRigidBody()->AddForce(i_Force);
-			}*/
+
 		}
 	}
 
@@ -56,9 +37,7 @@ namespace Engine
 		{
 			m_GameObjects[i]->Shutdown();
 		}
-		
-		if(m_Instance)
-			delete m_Instance;
+
 	}
 
 	shared_ptr<GameObject>& GameObjectManager::CreateGameObjectFromLua(std::string i_FileName)

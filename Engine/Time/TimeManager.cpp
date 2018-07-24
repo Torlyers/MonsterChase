@@ -3,16 +3,6 @@
 
 namespace Engine
 {
-
-	TimeManager* TimeManager::m_Instance = nullptr;
-
-	TimeManager* TimeManager::Instance()
-	{
-		if (m_Instance == nullptr)
-			m_Instance = new TimeManager();
-		return m_Instance;
-	}
-
 	TimeManager::TimeManager():
 	GameTotalTime(0),
 	FrameAmount(0),
@@ -59,7 +49,6 @@ namespace Engine
 
 	void TimeManager::Shutdown()
 	{
-		if(m_Instance != nullptr)
-			delete m_Instance;
+
 	}
 }

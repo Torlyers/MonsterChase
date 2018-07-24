@@ -1,6 +1,7 @@
 #pragma once
 #include "Time/TimeManager.h"
 #include <map>
+#include "Base/Singleton.h"
 
 namespace Engine
 {
@@ -33,17 +34,15 @@ namespace Engine
 		
 	};
 
-	class Profiler
+	class Profiler : public Singleton<Profiler>
 	{
 	private:
 		std::map<const char *, Accumulator *> m_AllAccumulators;	
-		static Profiler* m_Instance;
 
 	public:
 		~Profiler();
 		void RegisterAccumulator(const char * i_Name, Accumulator* i_Accumulator);
 		void OutputProfile();
-		static Profiler* Instance();
 
 		void Init();
 		void Shutdown();

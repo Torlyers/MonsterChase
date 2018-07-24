@@ -1,21 +1,14 @@
 #pragma once
-#include<vector>
-#include"Physics/RigidBody.h"
-#include "JobSystem/Thread/Mutex.h"
-#include "JobSystem/Thread/SingleWriterMultipleReader.h"
+#include <vector>
 #include <memory>
-#include <mutex>
+#include "Physics/RigidBody.h"
+#include "Base/Singleton.h"
 
 namespace Engine
 {
-
-	class PhysicsManager
+	class PhysicsManager : public Singleton<PhysicsManager>
 	{
 	private:
-		static PhysicsManager* m_Instance;
-		//SingleWriterMutipleReader* m_Mutex;
-
-		//Mutex mutex1;
 	
 	public:
 
@@ -29,9 +22,6 @@ namespace Engine
 
 		//All the rigidBodies in the game
 		std::vector<RigidBody*> RigidBodies;
-		
-		//Singleton
-		static PhysicsManager* Instance();
 
 		//The sum of forces from outside
 		Vector2 InputForce;
@@ -39,7 +29,6 @@ namespace Engine
 		//For GameObjects to add rigidBody
 		void AddRigidBody(shared_ptr<GameObject> go);
 	};
-
 }
 
 #include "PhysicsManager_inl.h"

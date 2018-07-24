@@ -1,27 +1,23 @@
 #pragma once
 
 #include <unordered_map>
-
 #include "HashedString/HashedString.h"
 #include "Message/Delegate.h"
-
+#include "Base/Singleton.h"
 
 namespace Engine
 {
 
-	class MessageManager
+	class MessageManager : public Singleton<MessageManager>
 	{
 	private:
 
-		static MessageManager* m_Instance;
 		std::unordered_map<const char*, Delegate<>> m_DelegateMap;
 		std::unordered_map<const char*, MultiCastDelegate<>> m_MultiDelegateMap;
 
 	public:
 		MessageManager();
 		~MessageManager();
-
-		static MessageManager* Instance();
 
 		void Init();
 		void Run();

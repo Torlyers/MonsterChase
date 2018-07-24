@@ -4,8 +4,7 @@
 #include "Colliders/BoxCollider2D.h"
 #include "Math/Vector2.h"
 #include "Math/Vector3.h"
-#include "JobSystem/Thread/Mutex.h"
-#include "JobSystem/Thread/SingleWriterMultipleReader.h"
+#include "Base/Singleton.h"
 
 namespace Engine
 {
@@ -22,11 +21,9 @@ namespace Engine
 			col1(nullptr), col2(nullptr) {}
 	};
 
-	class ColliderManager
+	class ColliderManager : public Singleton<ColliderManager>
 	{
 	private:
-		static ColliderManager* m_Instance;
-		//SingleWriterMutipleReader* m_Mutex;
 
 	public:
 		ColliderManager();
@@ -39,9 +36,6 @@ namespace Engine
 
 		//All the rigidBodies in the game
 		std::vector<BoxCollider2D*> Colliders;
-
-		//Singleton
-		static ColliderManager* Instance();
 
 		//For GameObjects to add rigidBody
 		void AddCollider(shared_ptr<GameObject> go);

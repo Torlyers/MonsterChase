@@ -1,12 +1,13 @@
 #pragma once
 
-#include<stdio.h>
-#include<unordered_map>
-#include"DebugTool\Debug.h"
+#include <stdio.h>
+#include <unordered_map>
+#include "DebugTool\Debug.h"
+#include "Base\Singleton.h"
 
 namespace Engine
 {
-	class Input
+	class Input : public Singleton<Input>
 	{
 	private:
 		static Input* m_Instance;
@@ -20,9 +21,6 @@ namespace Engine
 		void Init();
 		void Shutdown();
 
-		//Singleton
-		static Input* Instance();		
-
 		//temp state flag
 		bool IsKeyDown(int i_KeyID);
 		bool isKeyUp(int i_KeyID);
@@ -34,4 +32,3 @@ namespace Engine
 	};
 		
 }
-

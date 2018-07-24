@@ -1,21 +1,19 @@
 #pragma once
 
 #include <vector>
-
+#include <Memory>
 #include "GameObject/GameObject.h"
 #include "Render/Renderer.h"
-#include <Memory>
+#include "Base/Singleton.h"
 
 using namespace std;
 
 namespace Engine
 {
 
-	class RenderManager
+	class RenderManager : public Singleton<RenderManager>
 	{
 	private: 
-		static RenderManager* m_Instance;
-		//SingleWriterMutipleReader* m_Mutex;
 
 	public:
 		RenderManager();
@@ -24,8 +22,6 @@ namespace Engine
 		void Init();
 		void Run();
 		void ShutDown();
-
-		static RenderManager* Instance();
 
 		std::vector<Renderer*> Renderers;
 

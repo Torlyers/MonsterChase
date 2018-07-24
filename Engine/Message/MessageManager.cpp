@@ -2,19 +2,6 @@
 
 namespace Engine
 {
-
-	MessageManager* MessageManager::m_Instance = nullptr;
-
-	MessageManager* MessageManager::Instance()
-	{
-		if (m_Instance == nullptr)
-		{
-			m_Instance = new MessageManager();
-		}
-
-		return m_Instance;
-	}
-
 	MessageManager::MessageManager()
 	{
 	}
@@ -43,17 +30,11 @@ namespace Engine
 		}
 		m_DelegateMap.clear();
 
-
 		std::unordered_map<const char*, MultiCastDelegate<>>::iterator itor2 = m_MultiDelegateMap.begin();
 		while (itor2 != m_MultiDelegateMap.end())
 		{
 			m_MultiDelegateMap.erase(itor2++);
 		}
 		m_MultiDelegateMap.clear();
-
-		if (m_Instance != nullptr)
-			delete m_Instance;
 	}
-
-	
 }

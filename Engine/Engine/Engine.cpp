@@ -6,15 +6,6 @@
 
 namespace Engine {
 
-	ZEngine* ZEngine::m_Instance = nullptr;
-
-	ZEngine* ZEngine::Instance()
-	{
-		if (!m_Instance)
-			m_Instance = new ZEngine();
-		return m_Instance;
-	}
-
 	ZEngine::ZEngine()
 	{
 		bQuit = false;
@@ -31,7 +22,6 @@ namespace Engine {
 		
 		if (bSuccess)
 		{
-			
 			JobSystem::Init();
 			GameObjectManager::Instance()->Init();
 			Input::Instance()->Init();			
@@ -42,7 +32,6 @@ namespace Engine {
 			Profiler::Instance()->Init();
 			MessageManager::Instance()->Init();
 		}
-
 	}
 
 	void ZEngine::Run()
@@ -71,10 +60,5 @@ namespace Engine {
 		MessageManager::Instance()->ShutDown();
 
 		JobSystem::Shutdown();
-
-		if (m_Instance != nullptr)
-			delete m_Instance;
-		
 	}
-
 }

@@ -1,10 +1,11 @@
 #pragma once
-#include<stdio.h>
-#include<string.h>
-#include<stdlib.h>
-#include<vector>
+#include <stdio.h>
+#include <string.h>
+#include <stdlib.h>
+#include <vector>
+#include <memory>
 
-#include "GameObject\gameobject.h"
+#include "GameObject\GameObject.h"
 #include "Time\TimeManager.h"
 #include "Physics\PhysicsManager.h"
 #include "Input\Input.h"
@@ -13,19 +14,15 @@
 #include "Colliders\ColliderManager.h"
 #include "GameObject\GameObjectManager.h"
 #include "Render\RenderManager.h"
+#include "Base\Singleton.h"
 
-#include <memory>
 using namespace std;
 
 namespace Engine
 {
-
-	class ZEngine
+	class ZEngine : public Singleton<ZEngine>
 	{
-
 	private:
-		static ZEngine* m_Instance;
-		
 
 	public:
 		bool bQuit;
@@ -36,10 +33,6 @@ namespace Engine
 		void Init(HINSTANCE i_hInstance, HINSTANCE i_hPrevInstance, LPWSTR i_lpCmdLine, int i_nCmdShow);
 		void Run();
 		void Shutdown();
-
-		static ZEngine* Instance();
 		
 	};
-
-
 }

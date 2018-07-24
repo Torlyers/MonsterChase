@@ -3,16 +3,15 @@
 #include <WinBase.h>
 #include <iostream>
 #include "DebugTool/Debug.h"
+#include "Base/Singleton.h"
 
 namespace Engine
 {
 
-	class TimeManager
+	class TimeManager : public Singleton<TimeManager>
 	{
 	
 	private:
-
-		static TimeManager* m_Instance;
 
 		typedef LARGE_INTEGER Tick;
 
@@ -36,9 +35,6 @@ namespace Engine
 		void Init();
 		void Update();
 		void Shutdown();
-
-		//Singleton
-		static TimeManager* Instance();
 
 		//Getters
 		float GetFrameDeltaTime();

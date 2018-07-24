@@ -1,43 +1,64 @@
 #pragma once
-#include"Base/Kernel.h"
+#include <memory>
+#include <mutex>
+#include "Base/Kernel.h"
 
+using namespace std;
 
 namespace Engine
 {
-
-
-
 	template<typename T>
 	class Singleton
-	{
-				
+	{				
 	public:
-		
 		static T* Instance();
+		static void DeleteInstance();
+
+	protected:
+		Singleton();
+		virtual ~Singleton() = 0;
 
 	private:
-		
-		Singleton();
-		~Singleton();
-		Singleton(const T& i_other);
-		Singleton& operator=(const T& i_other);
-		
-		static T* m_Instance;
+		Singleton(const Singleton<T>& i_other);
+		Singleton<T>& operator=(const Singleton<T>& i_other);
+		static unique_ptr<T> m_Instance;
+		static mutex m_Mutex;
 	};
 
-	
+	template<typename T>
+	unique_ptr<T> Singleton<T>::m_Instance = nullptr;
 
 	template<typename T>
-	static T* Singleton<T>::Instance()
+	mutex Singleton<T>::m_Mutex;
+
+	template<typename T>
+	T* Singleton<T>::Instance()
 	{
-		if (m_Instance == nullptr)
+		if (m_Instance.get() == nullptr)
 		{
-			m_Instance = new T();
+			lock_guard<mutex> lock(m_Mutex);
+			if (m_Instance.get() == nullptr)
+			{
+				m_Instance = make_unique<T>();
+			}
 		}
 
-		return m_Instance;
+		return m_Instance.get();
 	}
 
 	template<typename T>
-	T* Singleton<T>::m_Instance = nullptr;
+	void Singleton<T>::DeleteInstance()
+	{
+		if (m_Instance != nullptr)
+		{
+			delete m_Instance;
+			m_Instance = nullptr;
+		}
+	}
+
+	template<typename T>
+	Singleton<T>::Singleton() {}
+
+	template<typename T>
+	Singleton<T>::~Singleton() {}
 }
