@@ -3,12 +3,12 @@
 #include <assert.h>
 #include <stdint.h>
 #include <stdlib.h>
-
+#include <string>
+#include <memory>
 
 #include "File\File.h"
 #include "Math\Vector3.h"
 
-#include <memory>
 using namespace std;
 
 namespace Engine {
@@ -16,17 +16,15 @@ namespace Engine {
 	//component declaration
 	class RigidBody;
 	class BoxCollider2D;
-	class Renderer;
-
-	 
+	class Renderer;	 
 
 	class GameObject
 	{
 	protected:
 
-		const char* m_Name;
+		string  m_Name;
 		Vector2 m_Position;
-		float m_Rotation;
+		float   m_Rotation;
 		
 
 		RigidBody* m_RigidBody;
@@ -43,8 +41,8 @@ namespace Engine {
 		GameObject& operator=(const GameObject& sprite);
 		GameObject& operator=(GameObject&& sprite);
 
-		const char* GetName() const;
-		void SetName(const char* name);
+		string GetName();
+		void SetName(const string& name);
 		
 		Vector2 GetPosition();
 		void SetPosition(Vector2 position);

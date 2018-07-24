@@ -356,13 +356,4 @@ namespace Engine
 		lua_pop(i_lua_state, 1);
 
 	}
-
-	void GameObjectManager::AddGameObject(shared_ptr<GameObject> go, std::string i_Name)
-	{
-		//m_Mutex->WriteLock();
-		//MessageManager::Instance()->BroadCastMessage("CreateNewGameObject");
-		//m_Mutex->ReleaseWriteLock();
-	}
-
 }
-

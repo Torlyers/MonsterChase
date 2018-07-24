@@ -80,20 +80,6 @@ void Game::Init()
 	receiver = new SpacePressedReceiver();
 	Delegate<> tempDelegate = Delegate<>::Create<SpacePressedReceiver, &SpacePressedReceiver::OnSpacePressed>(receiver);
 	MessageManager::Instance()->AddDelegate("PRESSED_32", tempDelegate);
-	
-	JobSystem::CreateQueue("LoadFile", 1);
-	JobSystem::CreateQueue("CreateGameObject", 1);
-	
-	AddGameObjectFromLua("text", "Data\\text.lua");
-	AddGameObjectFromLua("gameover", "Data\\gameover.lua");
-	AddGameObjectFromLua("ball", "Data\\ball.lua");
-	AddGameObjectFromLua("score1", "Data\\score1.lua");
-	AddGameObjectFromLua("score2", "Data\\score2.lua");
-	AddGameObjectFromLua("player1", "Data\\pat.lua");
-	AddGameObjectFromLua("player2", "Data\\pat1.lua");
-	AddGameObjectFromLua("bg", "Data\\bg.lua");
-	AddGameObjectFromLua("wallup", "Data\\wallup.lua");
-	AddGameObjectFromLua("wallbottom", "Data\\wallbottom.lua");
 }
 
 void Game::Run()

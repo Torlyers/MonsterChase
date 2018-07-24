@@ -36,18 +36,21 @@ namespace Engine {
 		m_Position = sprite.m_Position;
 		m_RigidBody = sprite.m_RigidBody;
 		m_Collider = sprite.m_Collider;
+		m_Renderer = sprite.m_Renderer;
 		m_Rotation = sprite.m_Rotation;
 
 	}
 
 	GameObject::GameObject(GameObject && sprite)
 	{
-		const char* temp = sprite.m_Name;
-		this->m_Name = temp;
-		sprite.m_Name = this->m_Name;
+		string temp = sprite.m_Name;
+		m_Name = temp;
+		sprite.m_Name = m_Name;
 
-		//this->m_Name = sprite.m_Name;
-		this->m_Position = sprite.m_Position;
+		m_Position = sprite.m_Position;
+		m_Position = sprite.m_Position;
+		m_RigidBody = sprite.m_RigidBody;
+		m_Collider = sprite.m_Collider;
 	}
 
 	GameObject& GameObject::operator=(const GameObject& sprite)
@@ -56,6 +59,7 @@ namespace Engine {
 		m_Position = sprite.m_Position;
 		m_RigidBody = sprite.m_RigidBody;
 		m_Collider = sprite.m_Collider;
+		m_Renderer = sprite.m_Renderer;
 		m_Rotation = sprite.m_Rotation;
 
 		return *this;
@@ -63,10 +67,14 @@ namespace Engine {
 
 	GameObject& GameObject::operator=(GameObject && sprite)
 	{
-		const char* temp = sprite.m_Name;
-		this->m_Name = temp;
-		sprite.m_Name = this->m_Name;
-		this->m_Position = sprite.m_Position;
+		string temp = sprite.m_Name;
+		m_Name = temp;
+		sprite.m_Name = m_Name;
+
+		m_Position = sprite.m_Position;
+		m_Position = sprite.m_Position;
+		m_RigidBody = sprite.m_RigidBody;
+		m_Collider = sprite.m_Collider;
 		
 		return *this;
 	}
@@ -98,15 +106,12 @@ namespace Engine {
 		if (m_RigidBody != nullptr)
 		{
 			delete m_RigidBody;
-
 		}
 
 		if (m_Collider != nullptr)
 		{
 			delete m_Collider;
 		}
-
-
 	}
 
 }

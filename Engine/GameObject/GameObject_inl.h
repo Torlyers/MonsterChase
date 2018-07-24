@@ -29,12 +29,12 @@ namespace Engine
 		m_Rotation = i_Rot;
 	}
 
-	inline const char* GameObject::GetName() const
+	inline string GameObject::GetName()
 	{
 		return m_Name;
 	}
 
-	inline void GameObject::SetName(const char* name)
+	inline void GameObject::SetName(const string& name)
 	{
 		m_Name = name;
 	}	
